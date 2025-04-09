@@ -1,5 +1,5 @@
 var preload = true;
-var xmlDoc, random, image, title, price, link, condition, allLinks=[];
+var xmlDoc, random, image, title, price, year, link, condition, productCount = 8, totalItems, brand, allLinks=[], filteredDataObj = {}, filteredDataArr=[];
 
 var imagesLoaded = 0; const allImages = document.getElementsByTagName("img"); const totalImagesToLoad = allImages.length;
 
@@ -17,22 +17,45 @@ function loadXMLDoc() {
       printXMLdata(this);
     }
   };
-  xmlhttp.open("GET", "../gmc-feed-test/data/mymoto_Gumtree_Export_260325.xml", true);
+  xmlhttp.open("GET", "../data/mymoto_Gumtree_Export_260325.xml", true);
   xmlhttp.send();
 }
 
 function printXMLdata(xml) {
   xmlDoc = xml.responseXML;
-  random = generateRandom();
-  // console.log(random)
-  // console.log(random.length)
+  // filterBrandCondition();
 
-  for(var k=0; k<random.length; k++){
-    image = xmlDoc.getElementsByTagName("g:image_link")[random.split('')[k]].childNodes[0].nodeValue;
-    title = xmlDoc.getElementsByTagName("g:title")[random.split('')[k]].childNodes[0].nodeValue;
-    price = xmlDoc.getElementsByTagName("g:price")[random.split('')[k]].childNodes[0].nodeValue;
-    condition = xmlDoc.getElementsByTagName("g:condition")[random.split('')[k]].childNodes[0].nodeValue;
-    link = xmlDoc.getElementsByTagName("g:link")[random.split('')[k]].childNodes[0].nodeValue;
+  totalItems = xmlDoc.getElementsByTagName("g:brand").length;
+
+  for(var t=0; t<totalItems; t++){
+    brand = xmlDoc.getElementsByTagName("g:brand")[t].childNodes[0].nodeValue.trim();
+    condition = xmlDoc.getElementsByTagName("g:condition")[t].childNodes[0].nodeValue.trim();
+    image = xmlDoc.getElementsByTagName("g:image_link")[t].childNodes[0].nodeValue;
+    title = xmlDoc.getElementsByTagName("g:title")[t].childNodes[0].nodeValue.split("Used ")[1];
+    price = xmlDoc.getElementsByTagName("g:price")[t].childNodes[0].nodeValue.replace("AUD","");
+    price = Number(price);
+    price = "$"+price.toLocaleString();
+    year = xmlDoc.getElementsByTagName("g:year")[t].childNodes[0].nodeValue;
+    link = xmlDoc.getElementsByTagName("g:link")[t].childNodes[0].nodeValue;
+
+    if(brand == "Toyota" && condition == "Used"){
+      filteredDataArr.push({brand:brand, condition:condition, image:image, title:title, price:price, year:year, link:link});
+    }
+  }
+  // console.log(filteredDataArr);
+
+  random = generateRandom();
+  random = random.split(',')
+  // console.log(random)
+
+  for(var k=0; k<productCount; k++){
+    // console.log(filteredDataArr);
+    image = filteredDataArr[random[k]].image;
+    title = filteredDataArr[random[k]].title;
+    price = filteredDataArr[random[k]].price;
+    year = filteredDataArr[random[k]].year;
+    condition = filteredDataArr[random[k]].condition;
+    link = filteredDataArr[random[k]].link;
 
     document.getElementById("title"+[k+1]).innerHTML = title;
     document.getElementById("img"+[k+1]).src = image;
@@ -67,12 +90,13 @@ function printXMLdata(xml) {
 }
 
 function generateRandom(){
-    var digits = [...Array(10).keys()];
+    var digits = [...Array(filteredDataArr.length).keys()];
+    // console.log(digits)
     for (var i = digits.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
         [digits[i], digits[j]] = [digits[j], digits[i]];
     }
-    return digits.slice(0, 8).join('');
+    return digits.slice(0, productCount).join(',');
 }
 
 function preloadImages() { for (var i = 0; i < allImages.length; i++) { var download = new Image(); download.onload = function () { imagesLoaded++; checkTotalImagesLoaded(); }; download.src = allImages[i].src; } };
