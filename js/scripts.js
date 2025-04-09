@@ -17,7 +17,7 @@ function loadXMLDoc() {
       printXMLdata(this);
     }
   };
-  xmlhttp.open("GET", "../data/mymoto_Gumtree_Export_260325.xml", true);
+  xmlhttp.open("GET", "../gmc-feed-test/data/mymoto_Gumtree_Export_260325.xml", true);
   xmlhttp.send();
 }
 
