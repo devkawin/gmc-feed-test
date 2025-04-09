@@ -86,6 +86,19 @@ body {
     box-sizing: border-box;
 }
 
+#productblock1{
+    border-top-left-radius: 10px;
+}
+#productblock2{
+    border-top-right-radius: 10px;
+}
+#productblock7{
+    border-bottom-left-radius: 10px;
+}
+#productblock8{
+    border-bottom-right-radius: 10px;
+}
+
 .block {
     width: 90%;
     height: 87%;
@@ -104,7 +117,7 @@ body {
     overflow: hidden;
     position: absolute;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     background: #000000;
     align-items: center;
 }
@@ -143,13 +156,13 @@ body {
 }
 
 .prices {
-    font-size: 12px;
+    font-size: 10px;
     color: #000000;
     display: inline-block;
     position: relative;
     background: #ffffff;
     padding: 2px 5px;
-    border-top-left-radius: 5px;
+    border-top-left-radius: 4px;
 }
 
 .titleparents {
