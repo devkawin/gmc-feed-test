@@ -4,7 +4,7 @@ var random, image, title, price, link, productCount = 8, totalItems, allLinks = 
 function init() {
     // images = document.getElementsByTagName("img")[0].complete;
     // console.log(images)
-    fetch('../data/mymoto_Gumtree_Export_260325.json').then(response => response.json()).then(data => {
+    fetch('../gmc_feed_test-300x600/data/mymoto_Gumtree_Export_260325.json').then(response => response.json()).then(data => {
         totalItems = data.length;
 
         random = generateRandom();
