@@ -72,6 +72,7 @@ body {
     justify-content: center;
     position: relative;
     top: 2%;
+    display: none;
 }
 
 .advertisement {
@@ -88,23 +89,26 @@ body {
     box-sizing: border-box;
 }
 
-#productblock1{
+#productblock1 {
     border-top-left-radius: 10px;
 }
-#productblock2{
+
+#productblock2 {
     border-top-right-radius: 10px;
 }
-#productblock7{
+
+#productblock7 {
     border-bottom-left-radius: 10px;
 }
-#productblock8{
+
+#productblock8 {
     border-bottom-right-radius: 10px;
 }
 
 .block {
     width: 90%;
-    height: 87%;
-    top: 3%;
+    height: 85%;
+    top: 2.5%;
     position: relative;
     left: 0;
     right: 0;
@@ -188,14 +192,17 @@ body {
 
 .brandparent {
     width: 100%;
-    height: auto;
+    height: 8%;
     display: flex;
     justify-content: center;
     position: absolute;
-    bottom: 2%;
+    bottom: 2.5%;
 }
 
 .brand {
+    max-width: 100%;
+    max-height: 100%;
+    opacity: 1;
 }
 
 .productclicks {

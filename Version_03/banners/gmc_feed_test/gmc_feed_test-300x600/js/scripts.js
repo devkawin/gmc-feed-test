@@ -4,7 +4,7 @@ var random, image, title, price, link, productCount = 8, totalItems, allLinks = 
 function init() {
     // images = document.getElementsByTagName("img")[0].complete;
     // console.log(images)
-    fetch('./data/mymoto_Gumtree_Export_260325.json').then(response => response.json()).then(data => {
+    fetch('../gmc_feed_test-300x600/data/mymoto_Gumtree_Export_260325.json').then(response => response.json()).then(data => {
         totalItems = data.length;
 
         random = generateRandom();
@@ -16,7 +16,7 @@ function init() {
             document.getElementById("title" + [k + 1]).innerHTML = data[random[k]].title;
             document.getElementById("img" + [k + 1]).src = data[random[k]].image;
             document.getElementById("img" + [k + 1]).style.opacity = "1";
-            document.getElementById("img" + [k + 1]).style.transition = "0.5s linear";
+            document.getElementById("img" + [k + 1]).style.transition = "0.5s linear 0.5s";
             document.getElementById("price" + [k + 1]).innerHTML = data[random[k]].price;
             document.getElementById("badge" + [k + 1]).innerHTML = "Used";
 
