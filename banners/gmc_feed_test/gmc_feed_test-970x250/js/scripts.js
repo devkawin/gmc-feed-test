@@ -23,6 +23,7 @@ function init() {
             allLinks.push(data[random[k]].link);
 
             document.getElementById('productclick' + [k + 1]).addEventListener('click', function(e) {
+                e.stopPropagation();
                 var element = e.target.id;
                 element = element.slice(element.length - 1, element.length)
                 // console.log(element)
@@ -63,8 +64,7 @@ function generateRandom() {
 }
 function startAd() {
 
-  document.getElementById('content').addEventListener('click', function() {// window.open(clickTag, '_blank');
-  });
+  document.getElementById('content').addEventListener('click', function() { window.open(clickTag, '_blank');});
     document.getElementById("maincontainer").style.opacity = "1";
     document.getElementById("content").style.opacity = "1";
     document.getElementById("loader").style.display = "none";
