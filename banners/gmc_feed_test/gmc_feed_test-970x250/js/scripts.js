@@ -16,7 +16,7 @@ function init() {
             document.getElementById("title" + [k + 1]).innerHTML = data[random[k]].title;
             document.getElementById("img" + [k + 1]).src = data[random[k]].image;
             document.getElementById("img" + [k + 1]).style.opacity = "1";
-            document.getElementById("img" + [k + 1]).style.transition = "0.5s linear";
+            document.getElementById("img" + [k + 1]).style.transition = "0.5s linear 0.2s";
             document.getElementById("price" + [k + 1]).innerHTML = data[random[k]].price;
             document.getElementById("badge" + [k + 1]).innerHTML = "Used";
 
